@@ -1,0 +1,42 @@
+{% extends './layout.html' %}
+
+{% block title %} 
+{{ data.titulo }}
+{% endblock %}
+
+{% block body %}
+
+<div class="row" >
+    
+    <div class="col s3" style="padding: 0%;">
+        
+        <ul class="collapsible" style="margin: 0%;">
+            
+            <li>
+                <div class="otracosa">
+                    <h4 class=""  style="text-align: center;">funcioNeS</h4>
+                </div>
+            </li>
+            
+            <a href="/boca"><li>
+                <div class="collapsible-header">
+                    <i class="material-icons">temperatura</i>
+                </div>
+            </li></a>
+            <a href="/temperatura"><li>
+                <div class="collapsible-header">
+                    <i class="material-icons">humedad</i>
+                </div>
+            </li></a>
+        </ul>
+        
+    </div>
+    
+    
+    <div class="col s9" style="background-color: aliceblue; height: 100%;">
+        <h1> aca iria la temperatura y alguna cosita mas </h1>
+    </div>
+    
+</div>
+
+{% endblock %}
