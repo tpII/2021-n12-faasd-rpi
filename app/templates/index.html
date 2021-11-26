@@ -6,37 +6,93 @@
 
 {% block body %}
 
-<div class="row" >
+<body>
     
-    <div class="col s3" style="padding: 0%;">
+    <div class="containernuestro">
         
-        <ul class="collapsible" style="margin: 0%;">
-            
-            <li>
-                <div class="otracosa">
-                    <h4 class=""  style="text-align: center;">funcioNeS</h4>
+        <div class="navbarnuestra" style="overflow: hidden">
+            <nav class="navbar navbar-dark" style="padding: 0;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/" style="margin: auto; border: 2px solid white; margin-top: 5px; width: 30%;">
+                        <img src="{{url_for('static', filename='icons/raspberry_pi_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
+                        <img src="{{url_for('static', filename='icons/whale_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
+                        <img src="{{url_for('static', filename='icons/temperatura_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
+                        <img src="{{url_for('static', filename='icons/favicon.ico')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
+                        RASPBERRY FAASD
+                    </a>
                 </div>
-            </li>
-            
-            <a href="/boca"><li>
-                <div class="collapsible-header">
-                    <i class="material-icons">temperatura</i>
+            </nav>
+            <!--Waves Container-->
+            <div>
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+            </svg>
+        </div>
+        <!--Waves end-->
+    </div>
+    
+    <div id="sidebar">
+        
+        <br><br>
+        <h3 style="color: white"> FUNCIONES </h3>
+        <br><br>
+        
+        <div class="contenedor">
+            <hr style="color: #e0ebf3; margin: 0; width: 90%; padding: 0.5%;">
+            <button class="boton cinco" onclick="server.getTemperatura()">  <!-- Agrega funcionalidad al boton (funcion de python) -->
+                <div class="icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                    </svg>
                 </div>
-            </li></a>
-            <a href="/temperatura"><li>
-                <div class="collapsible-header">
-                    <i class="material-icons">humedad</i>
+                <span>Temperatura</span>
+            </button>
+            <hr style="color: #e0ebf3; margin: 0; width: 90%; padding: 0.5%;">
+            <button class="boton cinco" onclick="server.getHumedad()"> <!-- Agrega funcionalidad al boton (funcion de python) -->
+                <div class="icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                    </svg>
                 </div>
-            </li></a>
-        </ul>
+                <span>Humedad</span>
+            </button>
+            <hr style="color: #e0ebf3; margin: 0; width: 90%; padding: 0.5%;">
+        </div>
         
     </div>
     
-    
-    <div class="col s9" style="background-color: aliceblue; height: 100%;">
-        <h1> aca iria la temperatura y alguna cosita mas </h1>
-    </div>
+    <main>
+        
+        <br><br>
+        <h1 style="color: white;"> DASHBOARD </h1>
+        <br><br>
+        <!-- <h1 style="color: white;"> TEMPERATURA Y HUMEDAD</h1> -->
+        <div style="display: none; color: white" id="DisplayTemperatura"> <!-- Agrega id al bloque -->
+            <h1> TEMPERATURA </h1>
+            <br>
+            <h2 id='ValorTemperatura'> </h2> 
+        </div>
+        <div style="display: none; color:white" id="DisplayHumedad"> <!-- Agrega id al bloque -->
+            <h1> HUMEDAD </h1>
+            <br>
+            <h2 id='ValorHumedad'> </h2>
+        </div>
+        <br>
+        <!-- <img src="https://powerbicdn.azureedge.net/mediahandler/blog/media/PowerBI/blog/c763c519-582d-49d8-b3ac-3ac76a10a377.gif" alt="Funny image" width="70%"> -->
+        
+    </main>
     
 </div>
+
+</body>
 
 {% endblock %}
