@@ -1,18 +1,9 @@
-def handle(req): #Funcion que lee el sensor DHT11 y devuelve la temperatura
+def handle(req): #Funcion que lee el servidor y devuelve la temperatura
 
-    import Adafruit_DHT
-    import time
+    import requests
 
-    DATA_PIN = 17
-    SENSOR = Adafruit_DHT.DHT11
+    url= 'http://192.168.1.75:6000/temperatura'
 
-    for i in range(0, 10):
+    temperatura= requests.get(url).text
 
-        humidity, temperature = Adafruit_DHT.read_retry(SENSOR, DATA_PIN)
-
-        if ((temperature != None)) and ((humidity != None)):
-            print("Temperatura={0:0.1f}ºC | Humedad={1:0.1f}%HR".format(temperature, humidity, flush=True))
-        else:
-            print("Falla de lectura. Reintentando...", flush=True)
-
-        time.sleep(5)
+    return temperatura
