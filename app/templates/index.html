@@ -13,11 +13,11 @@
         <div class="navbarnuestra" style="overflow: hidden">
             <nav class="navbar navbar-dark" style="padding: 0;">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/" style="margin: auto; border: 2px solid white; margin-top: 5px; width: 30%;">
-                        <img src="{{url_for('static', filename='icons/raspberry_pi_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
-                        <img src="{{url_for('static', filename='icons/whale_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
-                        <img src="{{url_for('static', filename='icons/temperatura_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
-                        <img src="{{url_for('static', filename='icons/favicon.ico')}}" alt="" width="35" height="35" class="d-inline-block align-text-top">
+                    <a class="navbar-brand" href="/" style="margin: auto; text-shadow: 0.15em 0.15em 0.3em black; margin-top: 5px; width: 30%;">
+                        <img src="{{url_for('static', filename='icons/raspberry_pi_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top" style="box-shadow: 0 0 10px black;">
+                        <img src="{{url_for('static', filename='icons/whale_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top" style="box-shadow: 0 0 10px black;">
+                        <img src="{{url_for('static', filename='icons/temperatura_icon.png')}}" alt="" width="35" height="35" class="d-inline-block align-text-top" style="box-shadow: 0 0 10px black;">
+                        <img src="{{url_for('static', filename='icons/favicon.ico')}}" alt="" width="35" height="35" class="d-inline-block align-text-top" style="box-shadow: 0 0 10px black;">
                         RASPBERRY FAASD
                     </a>
                 </div>
@@ -43,7 +43,7 @@
     <div id="sidebar">
         
         <br><br>
-        <h3 style="color: white"> FUNCIONES </h3>
+        <h2 style="color: white; font-size: 300%;"> FUNCIONES </h2>
         <br><br>
         
         <div class="contenedor">
@@ -54,7 +54,7 @@
                         <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                     </svg>
                 </div>
-                <span>Temperatura</span>
+                <span style="font-size: 110%;">Temperatura</span>
             </button>
             <hr style="color: #e0ebf3; margin: 0; width: 90%; padding: 0.5%;">
             <button class="boton cinco" onclick="server.getHumedad()"> <!-- Agrega funcionalidad al boton (funcion de python) -->
@@ -63,7 +63,7 @@
                         <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
                     </svg>
                 </div>
-                <span>Humedad</span>
+                <span style="font-size: 110%;">Humedad</span>
             </button>
             <hr style="color: #e0ebf3; margin: 0; width: 90%; padding: 0.5%;">
         </div>
@@ -71,37 +71,93 @@
     </div>
     
     <main>
-        
-        <br><br>
-        <h1 style="color: white;"> DASHBOARD </h1>
-        <br><br>
-        <!-- <h1 style="color: white;"> TEMPERATURA Y HUMEDAD</h1> -->
-        <div style="display: none; color: white" id="DisplayTemperatura"> <!-- Agrega id al bloque -->
-            <h1> TEMPERATURA </h1>
-            <br>
-            <h2 id='ValorTemperatura'> </h2>
-            <br>
-            <br>
-            <div id="chartdivTemperatura" style="width: 80%; height: 250px; background-color: #FFFFFF; margin:auto;" ></div>
+        <div style="color: white" id="DisplayHome"> <!-- Agrega id al bloque -->
+            
+            <h3 class="c-section__title"><span>Proyecto N12</span></h3>
+            <h4 class="c-section__subtitle"><span>Hacer de una Raspberry una faasd</span></h4>
+            <ul class="c-services">
+                <li class="c-services__item" onclick="window.open('https://www.openfaas.com/');">
+                    <h3>OpenFaaS</h3>
+                    <p>OpenFaaS es un marco de código abierto que permite implementar la arquitectura sin servidor en Kubernetes usando 
+                        contenedores de Docker para almacenar y ejecutar funciones. Permite que cualquier programa se encapsule como un contenedor y se 
+                        administre como una función a través de la línea de comandos o la IU web integrada.</p>
+                    </li>
+                    <li class="c-services__item" onclick="window.open('https://github.com/openfaas/faasd');">
+                        <h3>faasd</h3>
+                        <p>Faasd ofrece mucho de los beneficios de los containers y OpenFaaS, pero sin la complejidad y los costos 
+                            operacionales de Kubernetes. Se puede decir que es una versión más pequeña de OpenFaaS, diseñada para correr 
+                            en un single host sin la necesidad de ningún clustering, por lo que es ideal para implementación de la tecnología 
+                            function as a service dentro de una raspberry, debido a los bajos requerimientos computacionales.</p>
+                        </li>
+                        <li style="grid-template-columns: 1fr;" class="c-services__item">
+                            <h3>Funciones</h3>
+                            <p> Desde los botones a la izquierda de la pantalla se puede acceder a las funciones a las que se les hizo el
+                                deploy desde la raspberry, para obtener los valores de temperatura y humedad respectivamente.
+                            </p>
+                        </li>
+                        <li class="c-services__item" onclick="window.open('https://github.com/tpII/2021-n12-faasd-rpi');">
+                            <h3>Código fuente</h3>
+                            <p> Podes encontrar el código del proyecto en github:
+                                <ul style="color: #274690;">
+                                    <h4>https://github.com/tpII/2021-n12-faasd-rpi) </h4>
+                                    <h4>Autores: </h4>
+                                    <ol>
+                                        <li>
+                                            <h4>Dufourc Juan Ignacio</h4>
+                                        </li>
+                                        <li>
+                                            <h4>Zabalza Iñaki</h4>
+                                        </li>
+                                    </ol>
+                                </ul>                            
+                            </p>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div style="display: none;" id="DisplayTemperatura"> <!-- Agrega id al bloque -->
+                    <br>
+                    <div class= "contenedorBloques">
+                        <div class="bloqueIzquierda">   <!--Bloque izquierda  VER NOMBRE--> 
+                            <h1> Temperatura </h1>
+                        </div>
+                        <div id="wrapper" class="bloqueDerecha">	<!--Bloque derecha  VER NOMBRE-->
+                            <div id="termometer">
+                                <div id="temperature" style="height:0" data-value="0°C"></div>
+                                <div id="graduations"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div id="chartdivTemperatura" style="display: none; width: 80%; height: 250px; background-color: #FFFFFF; margin:auto;" ></div>
+                </div>
+                
+                <div style="display: none;" id="DisplayHumedad"> <!-- Agrega id al bloque -->
+                    <br>
+                    <div class= "contenedorBloques">
+                        <div class="bloqueIzquierda">   <!--Bloque izquierda  VER NOMBRE--> 
+                            <h1> Humedad </h1>
+                        </div>
+                        <div id="wrapper" class="bloqueDerecha">	<!--Bloque derecha  VER NOMBRE-->
+                            <div id="termometer">
+                                <div id="humidity" style="height:0" data-value="0%"></div>
+                                <div id="graduations"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div id="chartdivHumedad" style="display: none; width: 80%; height: 250px; background-color: #FFFFFF; margin:auto;" ></div>
+                </div>
+                
+                <!-- <img src="https://powerbicdn.azureedge.net/mediahandler/blog/media/PowerBI/blog/c763c519-582d-49d8-b3ac-3ac76a10a377.gif" alt="Funny image" width="70%"> -->
+                
+            </main>
+            
         </div>
-        <div style="display: none; color:white" id="DisplayHumedad"> <!-- Agrega id al bloque -->
-            <h1> HUMEDAD </h1>
-            <br>
-            <h2 id='ValorHumedad'> </h2>
-            <br>
-            <br>
-            <div id="chartdivHumedad" style="width: 80%; height: 250px; background-color: #FFFFFF; margin:auto;" ></div>
-        </div>
-        <br>
-        <br>
-        <br>
         
-        <!-- <img src="https://powerbicdn.azureedge.net/mediahandler/blog/media/PowerBI/blog/c763c519-582d-49d8-b3ac-3ac76a10a377.gif" alt="Funny image" width="70%"> -->
-        
-    </main>
+    </body>
     
-</div>
-
-</body>
-
-{% endblock %}
+    {% endblock %}
