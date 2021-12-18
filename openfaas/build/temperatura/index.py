@@ -7,11 +7,8 @@ from function import handler
 
 def get_stdin():
     buf = ""
-    while(True):
-        line = sys.stdin.readline()
-        buf += line
-        if line == "":
-            break
+    for line in sys.stdin:
+        buf = buf + line
     return buf
 
 if __name__ == "__main__":

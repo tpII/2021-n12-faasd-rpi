@@ -7,3 +7,4 @@ def handle(req): #Funcion que lee el servidor y devuelve la temperatura
     temperatura= requests.get(url).text
 
     return temperatura
+

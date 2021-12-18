@@ -26,14 +26,14 @@ def getHumedad():
 @app.route("/temperatura")
 def temperatura():
     temp= str(getTemperatura())
-    return jsonify(entero=temp,
-                   real=temp)
+    return jsonify(valor=temp,
+                   unidad='Celcius')
 
 @app.route("/humedad")
 def humedad():
     hum= str(getHumedad())
-    return jsonify(entero=hum,
-                   real=hum)
+    return jsonify(valor=hum,
+                   unidad='%')
 
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port=6000)

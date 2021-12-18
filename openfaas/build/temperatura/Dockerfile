@@ -1,5 +1,5 @@
 FROM --platform=${TARGETPLATFORM:-linux/amd64} ghcr.io/openfaas/classic-watchdog:0.2.0 as watchdog
-FROM --platform=${TARGETPLATFORM:-linux/amd64} python:3-alpine
+FROM --platform=${TARGETPLATFORM:-linux/amd64} python:2.7-alpine
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -10,7 +10,6 @@ ARG ADDITIONAL_PACKAGE
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 RUN chmod +x /usr/bin/fwatchdog
 RUN apk --no-cache add ca-certificates ${ADDITIONAL_PACKAGE}
-
 
 # Add non root user
 RUN addgroup -S app && adduser app -S -G app
@@ -48,7 +47,7 @@ RUN chown -R app:app ./ && \
 
 USER app
 
-ENV fprocess="python3 index.py"
+ENV fprocess="python index.py"
 EXPOSE 8080
 
 HEALTHCHECK --interval=3s CMD [ -e /tmp/.lock ] || exit 1
