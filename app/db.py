@@ -26,7 +26,7 @@ def add_hum (hum):      # Agregar valor de humedad a la bd
     curs.execute("INSERT INTO humedad values(datetime('now'), (?))", (hum,))
     conn.commit()
 
-def ultimosdiez(variable):     # Retornar cada 2 valores
+def valoresHistoricos(variable):     # Retornar cada 10 valores
     conn= conexion()
     curs= conn.cursor()
     sql= f'''SELECT t.valor, t.timestamp
@@ -35,15 +35,15 @@ def ultimosdiez(variable):     # Retornar cada 2 valores
                 SELECT valor, timestamp, ROW_NUMBER() OVER (ORDER BY timestamp DESC) AS rownum
                 FROM {variable}
             ) AS t
-            WHERE t.rownum % 2 = 0
+            WHERE t.rownum % 10 = 0
             LIMIT 10'''
-    lista= curs.execute(sql).fetchall() # Lista de los ultimos 10 valores
+    lista= curs.execute(sql).fetchall() # Lista de los ultimos 10 valores de la bd con un paso de 2
 
     row_headers=[x[0] for x in curs.description] # Extraer encabezados de filas
     lista_json=[]
     for result in lista:  # Recorrer la lista de temperaturas o humedades y convertirlas a JSON
-        diccionario= dict(zip(row_headers,[result[0],result[1][10:]])) # ['valor','timestamp'] == row_headers
-        lista_json.append((diccionario))  # Convertir a JSON
+        diccionario= dict(zip(row_headers,[result[0],result[1][5:]])) # ['valor','timestamp'] == row_headers
+        lista_json.append((diccionario))  
     
     return lista_json
 

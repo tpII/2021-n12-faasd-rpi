@@ -1,5 +1,14 @@
 
 function actualizarChart(valores,chartdiv){
+
+    if (chartdiv== 'chartdivTemperatura'){
+        min= 0;
+        max= 50;
+    }else {
+        min= 20;
+        max= 90;
+    }  
+
     diccionario= {
         "type": "serial",
         "categoryField": "category",
@@ -55,8 +64,8 @@ function actualizarChart(valores,chartdiv){
         "valueAxes": [
             {
                 "id": "ValueAxis-1",
-                "maximum": 40,
-                "minimum": 20,
+                "minimum": min,
+                'maximum': max,
                 "axisThickness": 0,
                 "color": "#333333",
                 "dashLength": 5,
@@ -83,7 +92,7 @@ function actualizarChart(valores,chartdiv){
             "column-1": valores[i].valor
         }
         diccionario.dataProvider.push(minidiccionario)
-    }
+    }      
 
     AmCharts.makeChart(chartdiv,diccionario);
 }
